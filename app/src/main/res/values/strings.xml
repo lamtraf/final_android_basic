@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BudgetApp</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <!-- strings.xml -->
+    <string name="income"> Income</string>
+    <string name="some_id">18,381 .18</string>
+    <string name="monday">Monday</string>
+    <string name="apr">24 APR</string>
 </resources>

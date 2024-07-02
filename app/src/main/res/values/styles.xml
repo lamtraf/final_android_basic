@@ -1,0 +1,61 @@
+<resources>
+
+    <style name="Widget.BudgetApp.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="Widget.BudgetApp.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <!-- styles.xml -->
+    <style name="income">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FAFAFC</item>
+    </style>
+    <!-- styles.xml -->
+    <style name="some_id">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <!-- strings.xml -->
+
+    <!-- styles.xml -->
+    <style name="bgn">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#ABF5DC</item>
+    </style>
+
+    <!-- strings.xml -->
+    <string name="bgn">
+                        BGN
+                    </string>
+    <!-- styles.xml -->
+    <style name="total_balan">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#74747A</item>
+    </style>
+
+    <!-- strings.xml -->
+    <string name="total_balan">
+                Total balance
+            </string>
+    <!-- styles.xml -->
+    <style name="apr">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    
+    <style name="monday">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#FAFAFC</item>
+    </style>
+
+        <style name="cr4">
+            <item name="cornerSize">4dp</item>
+        </style>
+
+
+</resources>
