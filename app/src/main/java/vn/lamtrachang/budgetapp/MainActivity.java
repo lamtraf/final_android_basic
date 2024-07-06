@@ -2,27 +2,19 @@ package vn.lamtrachang.budgetapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import vn.lamtrachang.budgetapp.placeholder.IncomeItem;
-import vn.lamtrachang.budgetapp.placeholder.IncomeItemAdapter;
+import vn.lamtrachang.budgetapp.placeholder.SQLiteHelper;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 //             return insets;
 //         });
 
-        startActivity(new Intent(this, HomeActivity.class));
+        Intent intent =new Intent(this, HomeActivity.class);
+        startActivity(intent);
+
+//        startActivity(new Intent(this, LoginScreen.class));
+
     }
 }

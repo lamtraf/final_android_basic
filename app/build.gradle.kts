@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
+    implementation(libs.media3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

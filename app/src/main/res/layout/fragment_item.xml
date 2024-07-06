@@ -41,7 +41,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/gas_station" />
+                        android:src="@drawable/baseline_currency_exchange_24" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -79,7 +79,7 @@
                 android:text="Weekly top up"
                 />
             <TextView
-                android:id="@+id/detal"
+                android:id="@+id/detail"
                 android:textColor="#9C9CEA"
                 android:textSize="10sp"
                 android:visibility="gone"
@@ -157,7 +157,7 @@
                 android:layout_gravity="end"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="BGN"
+                android:text="VND"
                 />
         </LinearLayout>
     </LinearLayout>
