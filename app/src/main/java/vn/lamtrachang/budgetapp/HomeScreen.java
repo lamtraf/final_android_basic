@@ -63,6 +63,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 break;
             case R.id.income:
                 break;
+            case R.id.setting:
+                break;
+
 
         }
         if(fragment != null){
@@ -70,6 +73,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             ft.replace(R.id.main_frame, fragment);
             ft.commit();
         }
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
@@ -77,7 +83,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        displaySelectedListener(item.getItemId());
+        return true;
     }
 
 

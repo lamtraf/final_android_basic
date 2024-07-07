@@ -12,16 +12,17 @@
     <include layout="@layout/appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_gravity="start"
         android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconTint="@color/toolbar_color"
-        app:menu="@menu/navmenu"
         app:headerLayout="@layout/nav_header"
+        app:itemIconTint="@color/toolbar_color"
         app:itemTextAppearance="?android:textAppearanceSmall"
-        android:layout_height="match_parent"/>
+        app:menu="@menu/navmenu" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
