@@ -150,21 +150,6 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
                 editTextName.requestFocus();
                 return;
             }
-//            if(category == -1)
-//            {
-//                Toast.makeText(this, "Please select a category", Toast.LENGTH_LONG).show();
-//                return;
-//            }
-
-            // for (int i = 0; i < chipGroup.getChildCount(); i++) {
-            //     if (chipGroup.getChildAt(i).isSelected()) {
-            //         category = i;
-            //         break;
-            //     }
-            // }
-
-//            category = chipGroup.getCheckedChipId();
-
 
             if(item.getName()== null)
             {

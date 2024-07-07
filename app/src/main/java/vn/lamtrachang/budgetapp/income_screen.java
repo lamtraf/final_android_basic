@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,9 @@ public class income_screen extends AppCompatActivity {
     private SQLiteHelper dataSource = new SQLiteHelper(this);
     private ImageView button_filter;
     private ImageView button_search;
-    private EditText edit_text_search;
+    private int filterCategory =-1;
+    private int filterType =-1;
+    EditText edit_text_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,6 @@ public class income_screen extends AppCompatActivity {
         //getExtras()
 
         mRecyclerItem = findViewById(R.id.list_income);
-        LinearLayout noTask = findViewById(R.id.no_task);
-
         String str = getIntent().getStringExtra("type");
 
 
@@ -82,6 +83,75 @@ public class income_screen extends AppCompatActivity {
         button_search = findViewById(R.id.button_search);
         edit_text_search = findViewById(R.id.text_search);
 
+
+        button_filter.setOnClickListener(v -> {
+            PopupMenu popupFilter = new PopupMenu(this, button_filter);
+            popupFilter.inflate(R.menu.filter_menu);
+            Menu menu = popupFilter.getMenu();
+            popupFilter.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    int id = item.getItemId();
+                    if (id == R.id.menuItem_food) {
+                         genListItems(getAllItemByCategory(0, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 0;
+                        //Do something
+                    } else if (id == R.id.menuItem_transport) {
+                         genListItems(getAllItemByCategory(1, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 1;
+                        //Do something
+                    } else if (id == R.id.menuItem_shopping) {
+                         genListItems(getAllItemByCategory(2, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 2;
+                        //Do something
+                    } else if (id == R.id.menuItem_health) {
+                         genListItems(getAllItemByCategory(3, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 3;
+                        //Do something
+                    } else if (id == R.id.menuItem_entertainment) {
+                         genListItems(getAllItemByCategory(4, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 4;
+                        //Do something
+                    } else if (id == R.id.menuItem_education) {
+                         genListItems(getAllItemByCategory(5, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 5;
+                        //Do something
+                    } else if (id == R.id.menuItem_bill) {
+                         genListItems(getAllItemByCategory(6, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 6;
+                        //Do something
+                    } else if (id == R.id.menuItem_other) {
+                         genListItems(getAllItemByCategory(7, getAllItemByType(filterType, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterCategory = 7;
+                        //Do something
+                    } else if (id == R.id.menuItem_non)
+                    {
+                    //Do something
+                     genListItems(getAllItemByName(edit_text_search.getText().toString().trim(),mItems));
+                    filterCategory = -1;
+                    }
+
+                    if (id == R.id.menuItem_bank) {
+                         genListItems(getAllItemByType(1, getAllItemByType(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterType = 1;
+                        //Do something
+                    } else if (id == R.id.menuItem_cash) {
+                         genListItems(getAllItemByType(0, getAllItemByType(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                        filterType = 0;
+                        //Do something
+                    } else if (id == R.id.menuItem_non)
+                    {
+                        //Do something
+                         genListItems(getAllItemByName(edit_text_search.getText().toString().trim(),mItems));
+                        filterType = -1;
+                    }
+                    return true;
+                }
+
+            });
+            popupFilter.show();
+        });
+
         edit_text_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -90,103 +160,21 @@ public class income_screen extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Gọi ngay khi có sự thay đổi
-                String name = edit_text_search.getText().toString();
-                genListItems(getAllItemByName(name, mItems));
+                String name = edit_text_search.getText().toString().trim();
+                genListItems(getAllItemByName(name, getAllItemByCategory(filterCategory, getAllItemByType(filterType, mItems))));
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
                 //Gọi sau khi thay đổi
-                //tắt bàn phím sau khi ấn enter
-                //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                //imm.hideSoftInputFromWindow(edit_text_search.getWindowToken(), 0);
-                
             }
-        });
-
-        button_filter.setOnClickListener(v -> {
-            PopupMenu popupFilter = new PopupMenu(this, button_filter);
-            popupFilter.inflate(R.menu.filter_menu);
-            Menu menu = popupFilter.getMenu();
-            popupFilter.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item){
-                    switch(item.getItemId()){
-//                        case R.id.menuItem_category:
-//                            PopupMenu popupCategory = new PopupMenu(this, button_filter);
-//                            popupCategory.inflate(R.menu.filter_menu);
-//                            Menu menuCategory = popupCategory.getMenu();
-//                            popupCategory.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                                @Override
-//                                public boolean onMenuItemClick(MenuItem item){
-//                                    switch(item.getItemId()){
-//
-//                                    }
-//                                    return true;
-//                                }
-//                            });
-//                            popupCategory.show();
-//                            break;
-                        case R.id.menuItem_food:
-                            genListItems(getAllItemByCategory(0, mItems));
-                            break;
-                        case R.id.menuItem_transport:
-                            genListItems(getAllItemByCategory(1, mItems));
-                            break;
-                        case R.id.menuItem_shopping:
-                            genListItems(getAllItemByCategory(2, mItems));
-                            break;
-                        case R.id.menuItem_health:
-                            genListItems(getAllItemByCategory(3, mItems));
-                            break;
-                        case R.id.menuItem_entertainment:
-                            genListItems(getAllItemByCategory(4, mItems));
-                            break;
-                        case R.id.menuItem_education:
-                            genListItems(getAllItemByCategory(5, mItems));
-                            break;
-                        case R.id.menuItem_bill:
-                            genListItems(getAllItemByCategory(6, mItems));
-                            break;
-                        case R.id.menuItem_other:
-                            genListItems(getAllItemByCategory(7, mItems));
-                            break;
-                        case R.id.menuItem_type:
-                            PopupMenu popupType = new PopupMenu(this, button_filter);
-                            popupType.inflate(R.menu.filter_menu);
-                            Menu menuType = popupType.getMenu();
-                            popupType.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item){
-                                    switch(item.getItemId()){
-                                        case R.id.menuItem_bank:
-                                            genListItems(getAllItemByType(1, mItems));
-                                            break;
-                                        case R.id.menuItem_cash:
-                                            genListItems(getAllItemByType(2, mItems));
-                                            break;
-                                    }
-                                    return true;
-                                }
-                            });
-                            popupType.show();
-                            break;
-                        case R.id.menuItem_date:
-                            //PopupDate
-                            break;
-
-                        }
-                        return true;
-                    }
-            });
-            popupFilter.show();
         });
 
         button_search.setOnClickListener(v -> {
             edit_text_search.clearFocus();
             String name = edit_text_search.getText().toString();
-            genListItems(getAllItemByName(name, mItems));
+            genListItems(getAllItemByName(name, getAllItemByCategory(filterCategory, getAllItemByType(filterType, mItems))));
         });
-
 
     }
 
@@ -201,6 +189,9 @@ public class income_screen extends AppCompatActivity {
     }
 
     public ArrayList<IncomeItem> getAllItemByCategory(int category, ArrayList<IncomeItem> mItems) {
+        if (category == -1) {
+            return mItems;
+        }
         ArrayList<IncomeItem> items = new ArrayList<>();
         for (IncomeItem item : mItems) {
             if (item.getCategory() == category) {
@@ -211,6 +202,9 @@ public class income_screen extends AppCompatActivity {
     }
 
     public ArrayList<IncomeItem> getAllItemByType(int type, ArrayList<IncomeItem> mItems) {
+        if (type == -1) {
+            return mItems;
+        }
         ArrayList<IncomeItem> items = new ArrayList<>();
         for (IncomeItem item : mItems) {
             if (item.getType() == type) {

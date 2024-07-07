@@ -49,8 +49,8 @@
         </menu>
     </item>
     <item
-        android:id="@+id/menuItem_date"
-        android:title="Share">
+        android:id="@+id/menuItem_non"
+        android:title="Non">
 
     </item>
 </menu>
