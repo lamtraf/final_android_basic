@@ -86,13 +86,13 @@ public class RegisterScreen extends AppCompatActivity {
                     passwordConfirm.requestFocus();
                     return;
                 }
-                   if (databaseHelper.checkUser(email, password)) {
+                if (databaseHelper.checkUser(email, password)) {
                       Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();
-                 } else {
-                      databaseHelper.addUser(name, email, password);
-                      Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
-                      Intent intent = new Intent(RegisterScreen.this, LoginScreen.class);
-                      startActivity(intent);
+                } else {
+                    databaseHelper.addUser(name, email, password);
+                    Toast.makeText(getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterScreen.this, LoginScreen.class);
+                    startActivity(intent);
                  }
             }
 });

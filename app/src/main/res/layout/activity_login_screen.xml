@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:layout_gravity="center"
-                android:background="@drawable/edittext_background"
+                android:background="@drawable/button_background"
                 android:text="Login"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
