@@ -1,9 +1,6 @@
 package vn.lamtrachang.budgetapp.placeholder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class IncomeItem implements Serializable {
     public  String name;  //content| tên item
     public  int  state; //details | trạng thái income hay expenses
@@ -11,37 +8,39 @@ public class IncomeItem implements Serializable {
     public  String time;
     public  String detail;
     public String money;
+    int category;
     int id;
 
     public IncomeItem()
     {
     }
 
-    public IncomeItem( String name, String money,  int type,int  state, String time) {
+    public IncomeItem( String name, String money,  int type,int  state, String time, int category) {
         this.name = name;
         this.state = state;
         this.type = type;
         this.time = time;
         this.money = money;
+        this.category = category;
     }
 
-    public IncomeItem( String name, String money, String detail,  int type,int  state, String time) {
+    public IncomeItem( String name, String money, String detail,  int type,int  state, String time, int category) {
         this.name = name;
         this.state = state;
         this.type = type;
         this.time = time;
         this.money = money;
         this.detail = detail;
+        this.category = category;
 
     }
 
-    public String toString() {
-        return  name + '\'' +
-                money +'\''+
-                detail + '\''
-                + type +'\''
-                + state +'\''
-                + time ;
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 
     public String getName() {

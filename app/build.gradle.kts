@@ -44,7 +44,6 @@ android {
 dependencies {
 
     implementation(libs.appcompat)
-
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
@@ -62,6 +61,8 @@ dependencies {
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
     implementation(libs.media3.common)
+//    implementation(libs.support.annotations)
+//    implementation(libs.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

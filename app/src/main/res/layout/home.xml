@@ -6,6 +6,7 @@
     android:background="#FFFFFFFF"
     android:orientation="vertical"
     android:id="@+id/home_screen"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
@@ -13,7 +14,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#8585A6"
-
         android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,11 +22,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginHorizontal="16dp">
                     <ImageView
-                        android:id="@+id/rw7dadz508j8"
+                        android:id="@+id/account_button"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffdedffe"
+
         android:orientation="vertical">
 
     <LinearLayout
@@ -19,12 +20,11 @@
         android:layout_height="wrap_content"
         android:background="#FFB2B0F7"
         android:paddingVertical="9dp"
-        android:layout_marginBottom="56dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFB2B0F7"
+            android:layout_marginHorizontal="18dp"
             android:paddingVertical="9dp"
             android:layout_gravity="center"
             android:orientation="horizontal">
@@ -35,15 +35,14 @@
                 android:layout_marginVertical="12dp"
                 android:src="@drawable/reply_arrow"
                 />
-            <Space
-                android:layout_width="126dp"
-                android:layout_height="0dp"/>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginVertical="12dp"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 android:text="Incomes"
                 android:layout_gravity="center"
                 android:textColor="#01010E"
@@ -53,6 +52,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
             android:layout_gravity="center_horizontal">
             <TextView
                 android:id="@+id/value"
@@ -79,6 +79,50 @@
 
 
 </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="28dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_shape"
+                tools:ignore="UselessParent">
+
+                <ImageView
+                    android:id="@+id/button_filter"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/preferences" />
+
+                <EditText
+                    android:id="@+id/text_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:hint="enter your imformation"
+                    android:inputType="text"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:textColorHint="#918888"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/button_search"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:pointerIcon="hand"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_search_24" />
+            </LinearLayout>
+
+
         <LinearLayout
             android:id="@+id/no_task"
             android:visibility="gone"

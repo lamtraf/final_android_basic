@@ -73,15 +73,18 @@ public class HomeActivity extends AppCompatActivity {
        } else {
            noTask.setVisibility(View.GONE);
        }
-
-        dataSource.deleteAll();
-        dataSource.addIncome(new IncomeItem("item 1","2842000","", 1, 1,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-        dataSource.addIncome(new IncomeItem("item 2","5730200", "tiền học", 1, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-        dataSource.addIncome(new IncomeItem("item 3","43500","", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-        dataSource.addIncome(new IncomeItem("item 4","38472000", "mua nhà", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-        dataSource.addIncome(new IncomeItem("item 5","3000","", 1, 1,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-        dataSource.addIncome(new IncomeItem("item 6","32000","", 1, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))) ));
-
+//        dataSource.deleteAll();
+//        dataSource.addIncome(new IncomeItem("item 1","2842000","", 1, 1,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 0 ));
+//        dataSource.addIncome(new IncomeItem("item 2","5730200", "tiền học", 1, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 1 ));
+//        dataSource.addIncome(new IncomeItem("item 3","43500","", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 2));
+//        dataSource.addIncome(new IncomeItem("item 4","38472000", "mua nhà", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 3));
+//        dataSource.addIncome(new IncomeItem("item 5","3000","", 1, 1,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 6));
+//        dataSource.addIncome(new IncomeItem("item 6","32000","", 1, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 5));
+//        dataSource.addIncome(new IncomeItem("item 7","100000","", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 6));
+//        dataSource.addIncome(new IncomeItem("item 8","200000","", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 7));
+//        dataSource.addIncome(new IncomeItem("item 9","500000","", 1, 1,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 4));
+//        dataSource.addIncome(new IncomeItem("item 10","1000000","", 1, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 3));
+//        dataSource.addIncome(new IncomeItem("item 11","2000000","", 0, 0,  String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy"))), 7));
          mItems = dataSource.getAll();
          mItemAdapter = new IncomeItemAdapter(this, mItems);
          mRecyclerItem.setAdapter(mItemAdapter);
@@ -110,6 +113,15 @@ public class HomeActivity extends AppCompatActivity {
                  textExpenses.setText("*******");
                  imgEye.setImageResource(R.drawable.baseline_visibility_off_24);
              }
+        });
+
+        ImageView add = findViewById(R.id.account_button);
+        add.setOnClickListener(v -> {
+            Intent intent = new Intent(this, DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("item", new IncomeItem() );
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
         
     }

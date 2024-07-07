@@ -1,5 +1,6 @@
 package vn.lamtrachang.budgetapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -36,8 +40,10 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
     private EditText editTextDetail;
     private Context mContext;
     private SQLiteHelper dataSource= new SQLiteHelper(this);
+    private ChipGroup chipGroup;
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,7 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
         });
         this.spinnerState = (Spinner) findViewById(R.id.spinner_state);
         this.spinnerType = (Spinner) findViewById(R.id.spinner_type);
+        chipGroup = findViewById(R.id.chip_group);
 
         String[] stateItems = {"Income", "Expenses"};
         String[] typeItems = {"Cash", "Bank"};
@@ -94,11 +101,10 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
             }
         });
 
+        
+
         Bundle bundle = getIntent().getExtras();
-        if (bundle == null){
-            return ;
-        }
-        IncomeItem item = (IncomeItem) bundle.get("item");
+        IncomeItem item = (IncomeItem) (bundle != null ? bundle.get("item") : null);
         editTextName = findViewById(R.id.task_name);
         editTextMoney = findViewById(R.id.task_money);
         editTextDetail = findViewById(R.id.task_detail);
@@ -108,26 +114,82 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
         editTextName.setText(item.getName());
         editTextMoney.setText(item.getMoney());
         editTextDetail.setText(item.getDetail());
+        chipGroup.getChildAt(item.getCategory()).setSelected(true);
+
+        chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId != item.getCategory()) {
+                chipGroup.getChildAt(item.getCategory()).setSelected(false);
+            }
+        });
+
+
 
         LinearLayout buttonSave = findViewById(R.id.submit);
         buttonSave.setOnClickListener(v -> {
-            String name = String.valueOf(editTextName.getText());
+            int category = 0;
+            String name = editTextName.getText().toString().trim();
             String money = editTextMoney.getText().toString();
             String detail = editTextDetail.getText().toString();
             int state = spinnerState.getSelectedItemPosition();
             int type = spinnerType.getSelectedItemPosition();
-            String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy")));
-            IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time);
-//            dataSource.addIncome(newItem);
-            dataSource.updateIncome(item,newItem);
-            Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
+            for (int i=0; i<chipGroup.getChildCount();i++){
+                Chip chip = (Chip)chipGroup.getChildAt(i);
+                if (chip.isChecked()){
+                    category = i;
+                }
+            }
+            if (name.isEmpty()|| name.isBlank())
+            {
+                editTextName.setError("Task name is required");
+                editTextName.requestFocus();
+                return;
+            }
+            if (money.isEmpty())
+            {
+                editTextMoney.setError("Task money is required");
+                editTextName.requestFocus();
+                return;
+            }
+//            if(category == -1)
+//            {
+//                Toast.makeText(this, "Please select a category", Toast.LENGTH_LONG).show();
+//                return;
+//            }
+
+            // for (int i = 0; i < chipGroup.getChildCount(); i++) {
+            //     if (chipGroup.getChildAt(i).isSelected()) {
+            //         category = i;
+            //         break;
+            //     }
+            // }
+
+//            category = chipGroup.getCheckedChipId();
+
+
+            if(item.getName()== null)
+            {
+                String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M")));
+                IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
+                dataSource.addIncome(newItem);
+            Toast.makeText(this, "Item added", Toast.LENGTH_LONG).show();
             Intent intent =new Intent(this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
-
-
+            }
+            else
+            {
+                String time = item.getTime();
+                IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
+                dataSource.updateIncome(item,newItem);
+                Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
+                Intent intent =new Intent(this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
 
         });
 

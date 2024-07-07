@@ -68,6 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:layout_weight="2"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/name"
@@ -78,42 +79,59 @@
                 android:layout_width="wrap_content"
                 android:text="Weekly top up"
                 />
-            <TextView
-                android:id="@+id/detail"
-                android:textColor="#9C9CEA"
-                android:textSize="10sp"
-                android:visibility="gone"
-                android:layout_marginBottom="6dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text=""
-                />
             <LinearLayout
                 android:id="@+id/rgxxoojhabp8"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/r38l7udec6g6"
-                    android:layout_width="64dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:background="@drawable/cr12bff303033"
-                    android:paddingVertical="6dp"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/type"
-                        android:textColor="#F9F9FC"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
-                        android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/r38l7udec6g6"
                         android:layout_width="wrap_content"
-                        android:text="revolut"
-                        />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+
+                        android:background="@drawable/cr12bff303033"
+                        android:padding="6dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/type"
+                            android:textColor="#F9F9FC"
+                            android:textSize="10sp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:text="revolut"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/cr16bff1b1b1e"
+                        android:padding="6dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/text_category"
+                            android:textColor="#F9F9FC"
+                            android:textSize="10sp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:text="revolut"
+                            />
+                    </LinearLayout>
 
                 </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"/>
                 <LinearLayout
                     android:id="@+id/rnwros2s6ud"
                     android:layout_width="wrap_content"
@@ -134,31 +152,31 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ramdrxj3nzms"
-            android:layout_width="match_parent"
+            android:layout_width="132dp"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/money"
-                android:textColor="#F9F9FC"
-                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="450.50"
-                />
+                android:text="450,550"
+                android:textColor="#F9F9FC"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/ra3orxxjnrod"
-                android:textColor="#74747A"
-                android:textSize="12sp"
-                android:layout_gravity="end"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:text="VND"
-                />
+                android:textColor="#74747A"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 

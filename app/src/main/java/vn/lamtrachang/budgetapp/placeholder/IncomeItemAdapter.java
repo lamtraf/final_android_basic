@@ -5,6 +5,7 @@ package vn.lamtrachang.budgetapp.placeholder;
 import static androidx.activity.result.ActivityResultCallerKt.registerForActivityResult;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,12 +50,10 @@ public class IncomeItemAdapter extends RecyclerView.Adapter<IncomeItemAdapter.Vi
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         IncomeItem hero = mIncomeItems.get(position);
-//        Glide.with(mContext)
-//                .load(hero.getImage())
-//                .into(holder.mImageHero);
         if (hero == null) {
             return;
         }
@@ -66,24 +65,39 @@ public class IncomeItemAdapter extends RecyclerView.Adapter<IncomeItemAdapter.Vi
             holder.mTextType.setText("Bank");
         }
         holder.mTextTime.setText(hero.getTime());
+        if(hero.getCategory() == 0){
+            holder.mTextCategory.setText("Food");
+        }else if(hero.getCategory() == 1){
+            holder.mTextCategory.setText("Transport");
+        }else if(hero.getCategory() == 2){
+            holder.mTextCategory.setText("Shopping");
+        }else if(hero.getCategory() == 3){
+            holder.mTextCategory.setText("Health");
+        }else if(hero.getCategory() == 4){
+            holder.mTextCategory.setText("Entertainment");
+        }else if(hero.getCategory() == 5){
+            holder.mTextCategory.setText("Education");
+        }else if(hero.getCategory() == 6){
+            holder.mTextCategory.setText("Bill");
+        }
+        else if(hero.getCategory() == 7){
+            holder.mTextCategory.setText("Other");
+        }
+
         holder.mTextMoney.setText(hero.getMoney());
         if (hero.getState() == 0) {
             holder.mImageState.setImageResource(R.drawable.income);
         } else {
             holder.mImageState.setImageResource(R.drawable.expenses);
         }
-        holder.mTextDetail.setText(hero.getDetail());
-        holder.mItem.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        
+        holder.mItem.setOnClickListener(v -> {
 //                onClickItem(hero);
-                Intent intent = new Intent(mContext, DetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("item", hero);
-                intent.putExtras(bundle);
-                 mContext.startActivity(intent);
-            }
-
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("item", hero);
+            intent.putExtras(bundle);
+             mContext.startActivity(intent);
         });
 //       holder.mItem.setOnLongClickListener(new View.OnLongClickListener() {
 //           @Override
@@ -115,7 +129,7 @@ public class IncomeItemAdapter extends RecyclerView.Adapter<IncomeItemAdapter.Vi
         private ImageView mImageState;
         private TextView mTextType;
         private TextView mTextTime;
-        private TextView mTextDetail;
+        private TextView mTextCategory;
         private TextView mTextMoney;
 
 
@@ -126,7 +140,7 @@ public class IncomeItemAdapter extends RecyclerView.Adapter<IncomeItemAdapter.Vi
             mImageState = itemView.findViewById(R.id.state);
             mTextType = itemView.findViewById(R.id.type);
             mTextTime = itemView.findViewById(R.id.text_time);
-            mTextDetail = itemView.findViewById(R.id.detail);
+            mTextCategory = itemView.findViewById(R.id.text_category);
             mTextMoney = itemView.findViewById(R.id.money);
         }
     }
