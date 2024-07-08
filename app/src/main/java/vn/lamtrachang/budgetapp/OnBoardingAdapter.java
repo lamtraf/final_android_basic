@@ -1,52 +1,70 @@
 package vn.lamtrachang.budgetapp;
 
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import vn.lamtrachang.budgetapp.OnBoardingItem;
+import vn.lamtrachang.budgetapp.R;
+
 public class OnBoardingAdapter extends RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder> {
 
-    private static final int[] LAYOUTS = {
-            R.layout.onboarding_page1,
-            R.layout.onboarding_page2,
-            R.layout.onboarding_page3
-    };
+    private List<OnBoardingItem> onBoardingItems;
+
+    public OnBoardingAdapter(List<OnBoardingItem> onBoardingItems) {
+        this.onBoardingItems = onBoardingItems;
+    }
 
     @NonNull
     @Override
     public OnBoardingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-        return new OnBoardingViewHolder(view);
+        return new OnBoardingViewHolder(
+                LayoutInflater.from(parent.getContext()).inflate(
+                        R.layout.item_container_onboard,
+                        parent,
+                        false
+                )
+        );
     }
 
     @Override
     public void onBindViewHolder(@NonNull OnBoardingViewHolder holder, int position) {
-        // No binding needed as each page has static content
+        holder.setOnBoardingData(onBoardingItems.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return LAYOUTS.length;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return LAYOUTS[position];
+        return onBoardingItems.size();
     }
 
     static class OnBoardingViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView textTitle;
+        private TextView textDescription;
+        private ImageView imageOnBoarding;
+
         OnBoardingViewHolder(@NonNull View itemView) {
             super(itemView);
+            textTitle = itemView.findViewById(R.id.textTitleOnBoarding);
+            textDescription = itemView.findViewById(R.id.textDescriptionOnBoarding);
+            imageOnBoarding = itemView.findViewById(R.id.imageOnBoarding);
+        }
+
+        void setOnBoardingData(OnBoardingItem onBoardingItem) {
+            textTitle.setText(onBoardingItem.getTitle());
+            textDescription.setText(onBoardingItem.getDescription());
+            imageOnBoarding.setImageResource(onBoardingItem.getImage());
         }
     }
 }

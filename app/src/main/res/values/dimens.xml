@@ -5,7 +5,22 @@
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
-    <dimen name="widget_margin">0dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+    <dimen name="dialog_padding">10dp</dimen>
+    <dimen name="hint_margin">8dp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="edge_padding">12dp</dimen>
+    <dimen name="widget_margin">2dp</dimen>
+    <dimen name="form_row_bottom_margin">10dp</dimen>
+    <dimen name="strip_width">5dp</dimen>
+    <dimen name="color_swatch_large">64dip</dimen>
+    <dimen name="color_swatch_small">48dip</dimen>
+    <dimen name="color_swatch_margins_large">8dip</dimen>
+    <dimen name="color_swatch_margins_small">4dip</dimen>
+    <dimen name="card_min_height">80dp</dimen>
+    <dimen name="toolbar_progress_height">5dp</dimen>
+
+    <dimen name="passcode_btn">70dp</dimen>
+    <dimen name="passcode_btn_margin">10dp</dimen>
+    <dimen name="elevation_default">10dp</dimen>
 
 </resources>

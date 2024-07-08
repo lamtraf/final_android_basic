@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.legacy.support.v4)
     implementation(libs.recyclerview)
     implementation(libs.media3.common)
+    implementation(libs.viewpager2)
+    implementation(libs.viewpager)
 //    implementation(libs.support.annotations)
 //    implementation(libs.support.v4)
     testImplementation(libs.junit)
@@ -70,4 +72,7 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    implementation(libs.material3)
+    //implementation(viewpage2)
 }
