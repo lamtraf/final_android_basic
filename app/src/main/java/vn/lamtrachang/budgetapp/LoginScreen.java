@@ -1,7 +1,7 @@
 package vn.lamtrachang.budgetapp;
 
 import static android.app.PendingIntent.getActivity;
-
+import vn.lamtrachang.budgetapp.HomeActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +31,7 @@ public class LoginScreen extends AppCompatActivity {
     public static final String KEY_EMAIL_TO_MAIN = "KEY_USER_TO_MAIN";
     public static final String KEY_PASSWORD_TO_MAIN = "KEY_PASSWORD_TO_MAIN";
     private ProgressBar progressBar;
+    private TextView continue_without_login;
 
     private DatabaseHelper databaseHelper;
 
@@ -48,6 +49,7 @@ public class LoginScreen extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         forgetPassword = findViewById(R.id.forget_password);
         registerLink = findViewById(R.id.signup_reg);
+        continue_without_login = findViewById(R.id.continue_without_login);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +95,15 @@ public class LoginScreen extends AppCompatActivity {
 
         });
 
+        continue_without_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginScreen.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,8 +123,8 @@ public class LoginScreen extends AppCompatActivity {
 
 
     }
-    private void showProgress(boolean isShow) {
-        progressBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
-        findViewById(R.id.login_form).setVisibility(!isShow ? View.VISIBLE : View.GONE);
-    }
+//    private void showProgress(boolean isShow) {
+//        progressBar.setVisibility(isShow ? View.VISIBLE : View.GONE);
+//        findViewById(R.id.login_form).setVisibility(!isShow ? View.VISIBLE : View.GONE);
+//    }
 }

@@ -127,7 +127,8 @@ public class LineChartActivity extends AppCompatActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1);
 
-        mBarChart.setVisibleXRangeMaximum(3);
+        mBarChart.setVisibleXRangeMaximum(4);
+        mBarChart.setVisibleXRangeMinimum(3);
         mBarChart.animateY(1000);
         float barSpace = 0.08f;
         float groupSpace = 0.38f;

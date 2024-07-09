@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">BudgetApp</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
@@ -9,4 +10,5 @@
     <string name="monday">Monday</string>
     <string name="apr">24 APR</string>
     <string name="title_activity_test_compode">test_compode</string>
+    <string name="label_report_period">Report Period</string>
 </resources>

@@ -5,18 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e3e0f1"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context=".LoginScreen">
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
     <ScrollView
-        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -27,22 +17,36 @@
 
             <ImageView
                 android:id="@+id/logoImageView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="45dp"
+                android:layout_width="184dp"
+                android:layout_height="156dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="45dp"
                 android:contentDescription="@string/app_name"
                 app:srcCompat="@drawable/login_image" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Log in!"
                 android:gravity="center"
+                android:text="Log in!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/continue_without_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:padding="6dp"
+                android:text="Continue without login!!!"
+                android:textColor="#A67676"
+                android:textSize="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,21 +74,22 @@
                 android:id="@+id/login_button"
                 android:layout_width="303dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:layout_gravity="center"
-                android:background="@drawable/edittext_background"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_background"
                 android:text="Login"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
+                android:id="@+id/forget_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Forget password?"
                 android:gravity="center"
                 android:padding="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:id="@+id/forget_password"/>
+                android:text="Forget password?"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
                 android:id="@+id/signup_reg"
@@ -94,6 +99,7 @@
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="Don't have an account? Register now!"
+                android:textColor="@android:color/holo_blue_dark"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>

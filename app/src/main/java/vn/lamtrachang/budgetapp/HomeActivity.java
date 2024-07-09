@@ -117,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
             noTask.setVisibility(View.GONE);
         }
 //        dataSource.deleteAll();
-//       initData();
+//       initData(); 
 
         mItems = dataSource.getAll();
         mItemAdapter = new IncomeItemAdapter(this, mItems);
@@ -145,21 +145,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        ImageView add = findViewById(R.id.account_button);
-        add.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DetailActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("item", new IncomeItem());
-            intent.putExtras(bundle);
-            startActivity(intent);
-        });
-        
     }
 
     //thêm dữ liệu mẫu từ tháng 5/2024
     public void initData() {
         dataSource.deleteAll();
-//            dataSource.addIncome(new IncomeItem("item 98","90000","", 1, 1,  "17:11 - 15.4 2024", 0));
+//            dataSource.addIncome(new IncomeItem("item 98","900000","", 1, 1,  "17:11 - 15.4 2024", 0));
         dataSource.addIncome(new IncomeItem("item 1", "284000", "", 1, 1, "14:11 - 14.5 2024", 0));
         dataSource.addIncome(new IncomeItem("item 2", "5730200", "tiền học", 1, 1, "22:11 - 14.5 2024", 1));
         dataSource.addIncome(new IncomeItem("item 3", "435000", "", 0, 0, "11:17 - 15.5 2024", 2));
@@ -187,7 +178,7 @@ public class HomeActivity extends AppCompatActivity {
         dataSource.addIncome(new IncomeItem("item 5", "300000", "", 1, 1, "10:41 - 18.8 2024", 6));
         dataSource.addIncome(new IncomeItem("item 6", "32000", "đi chợ ", 1, 1, "04:18 - 19.8 2024", 5));
         dataSource.addIncome(new IncomeItem("item 7", "100000", "sửa quần áo", 0, 0, "13:31 - 21.8 2024", 6));
-//    dataSource.addIncome(new IncomeItem("item 98","890000","", 1, 1,  "17:11 - 15.8 2024", 0));
+//    dataSource.addIncome(new IncomeItem("item 98","890000","", 1, 1,  "17:11 - 15.9 2024", 0));
 
 
     }
