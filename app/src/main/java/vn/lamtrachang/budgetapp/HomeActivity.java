@@ -160,7 +160,7 @@ public class HomeActivity extends AppCompatActivity {
         dataSource.addIncome(new IncomeItem("item 7", "100000", "sửa quần áo", 0, 0, "13:31 - 21.5 2024", 6));
         dataSource.addIncome(new IncomeItem("item 8", "200000", "", 0, 0, "15:13 - 21.5 2024", 7));
         dataSource.addIncome(new IncomeItem("item 16", "70000", "mua trái cây", 0, 0, "04:11 - 29.5 2024", 2));
-        dataSource.addIncome(new IncomeItem("item 17", "80000", "", 1, 1, "02:11 - 30.5 2024", 12024));
+        dataSource.addIncome(new IncomeItem("item 17", "80000", "", 1, 1, "02:11 - 30.5 2024", 1));
         dataSource.addIncome(new IncomeItem("item 18", "90000", "tiền điện", 1, 0, "01:11 - 31.5 2024", 0));
         dataSource.addIncome(new IncomeItem("item 9", "500000", "mua sách", 1, 1, "18:45 - 22.6 2024", 4));
         dataSource.addIncome(new IncomeItem("item 10", "100000", "", 1, 0, "16:24 - 23.6 2024", 3));
