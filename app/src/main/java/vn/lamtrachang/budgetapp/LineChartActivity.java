@@ -1,5 +1,6 @@
 package vn.lamtrachang.budgetapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,20 @@ public class LineChartActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.Chart);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.Chart) {
+                return true;
+            } else if (item.getItemId() == R.id.Home) {
+                startActivity(new Intent(this, HomeActivity.class));
+                return true;
+            } else if (item.getItemId() == R.id.Add) {
+                startActivity(new Intent(this, DetailActivity.class));
+                return true;
+            }
+            return false;
+        });
         mBarChart = findViewById(R.id.chart);
         mBarChart.setDrawBarShadow(false);
         mBarChart.getAxisRight().setDrawLabels(false);
@@ -49,25 +65,20 @@ public class LineChartActivity extends AppCompatActivity {
         ArrayList<IncomeItem> expenseItems = dataSource.getAllExpenses();
         ArrayList<BarEntry> entriesIncome = new ArrayList<>();
         ArrayList<BarEntry> entriesExpense = new ArrayList<>();
-        //DateTimeFormatter.ofPattern("HH:mm - dd.M")
+        //DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy")
         
         months = new ArrayList<>();
-        // for (int i = 0; i < (Math.max(incomeItems.size(), expenseItems.size())); i++) {
-        //     if (i<incomeItems.size()&&!months.contains(incomeItems.get(i).getTime().substring(11))) {
-        //         months.add(incomeItems.get(i).getTime().substring(11));
-        //                         //x2-1
-        //     }
-        //     if (i<expenseItems.size()&&!months.contains(expenseItems.get(i).getTime().substring(11))) {
-        //         months.add(expenseItems.get(i).getTime().substring(11));
-        //         //x2
-        //     }
-        // }
 
-        for( int i = 0; i< dataSource.getAll().size(); i++) {
-            if (!months.contains(dataSource.getAll().get(i).getTime().substring(11))) {
-                months.add(dataSource.getAll().get(i).getTime().substring(11));
+        ArrayList<IncomeItem> items = dataSource.getAll();
+
+        for( int i = 0; i< items.size(); i++) {
+            if (!months.contains(items.get(i).getTime().substring(11))) {
+                months.add(items.get(i).getTime().substring(11));
             }
         }
+        //sort months
+        Collections.sort(months);
+        
 
         //tính tổng tiền income và expenses theo tháng  và lưu vào entries
 
@@ -84,12 +95,9 @@ public class LineChartActivity extends AppCompatActivity {
                     expense += Float.parseFloat(expenseItems.get(j).getMoney());
                 }
             }
-            
             entriesIncome.add(new BarEntry(i, income));
             entriesExpense.add(new BarEntry(i, expense));
         }
-
-        
 
        BarDataSet barDataSetIncome = new BarDataSet(entriesIncome, "Income");
        barDataSetIncome.setColor(Color.GREEN);

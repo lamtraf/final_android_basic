@@ -2,23 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8B0B0"
     tools:context=".DetailActivity">
 
-    <LinearLayout
-        android:background="#E8B0B0"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
             <LinearLayout
+                android:id="@+id/main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="60dp"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -309,6 +307,33 @@
                     </com.google.android.material.chip.ChipGroup>
                 </HorizontalScrollView>
 
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/button_set_date"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:clickable="true"-->
+<!--                    android:gravity="center"-->
+<!--                    android:background="@drawable/cr24lr270ff13cc8eff5c3df4"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:layout_marginVertical="12dp"-->
+<!--                    android:layout_marginHorizontal="24dp">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/baseline_access_time_24"-->
+<!--                        />-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_set_date"-->
+<!--                        android:textColor="#000000"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:layout_marginHorizontal="8dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:text="Today"-->
+<!--                        />-->
+
+
+<!--                </LinearLayout>-->
                 <LinearLayout
                     android:id="@+id/submit"
                     android:layout_width="match_parent"
@@ -319,17 +344,40 @@
                     android:paddingVertical="15dp"
                     android:layout_marginHorizontal="24dp">
                     <TextView
-
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:text="submit"
                         />
-
                 </LinearLayout>
+
             </LinearLayout>
-    </LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/bottomNavigationBar"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            app:menu="@menu/bottommenu"
+            android:background="@drawable/app_widget_inner_view_background_bottom"
+            app:itemIconTint="@color/black"
+            app:itemTextColor="@color/black"
+            android:layout_alignParentStart="true">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

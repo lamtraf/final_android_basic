@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/dashboard"
-        android:title="Dashboard"
-        android:icon="@drawable/dashboard" />
+    <item android:id="@+id/Home"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24" />
 
-    <item android:id="@+id/income"
-        android:title="Income"
-        android:icon="@drawable/income" />
-    <item android:id="@+id/expense"
-        android:title="Expense"
-        android:icon="@drawable/expenses" />
+    <item android:id="@+id/Add"
+        android:title="Add"
+        android:icon="@drawable/baseline_add_24" />
+    <item android:id="@+id/Chart"
+        android:title="Chart"
+        android:icon="@drawable/baseline_bar_chart_24" />
+
 </menu>

@@ -3,9 +3,6 @@
     android:shape="rectangle">
 
     <corners android:radius="?attr/appWidgetInnerRadius"
-
-        android:bottomRightRadius="32dp"
-        android:bottomLeftRadius="32dp"
         />
     <solid android:color="?android:attr/colorAccent" />
 </shape>

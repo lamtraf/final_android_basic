@@ -21,6 +21,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -42,6 +43,7 @@ public class DetailActivity extends Activity { //AppCompatActivity {
     private ChipGroup chipGroup;
 
 
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class DetailActivity extends Activity { //AppCompatActivity {
         });
         this.spinnerState = (Spinner) findViewById(R.id.spinner_state);
         this.spinnerType = (Spinner) findViewById(R.id.spinner_type);
+        editTextName = findViewById(R.id.task_name);
+        editTextMoney = findViewById(R.id.task_money);
+        editTextDetail = findViewById(R.id.task_detail);
         chipGroup = findViewById(R.id.chip_group);
 
         String[] stateItems = {"Income", "Expenses"};
@@ -100,13 +105,28 @@ public class DetailActivity extends Activity { //AppCompatActivity {
             }
         });
 
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationBar);
         Bundle bundle = getIntent().getExtras();
+        
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.Add) {
+                return true;
+            } else if (item.getItemId() == R.id.Chart) {
+                startActivity(new Intent(this, LineChartActivity.class));
+                return true;
+            } else if (item.getItemId() == R.id.Home) {
+                startActivity(new Intent(this, HomeActivity.class));
+                return true;
+            }
+            return false;
+        });
         IncomeItem item = (IncomeItem) (bundle != null ? bundle.get("item") : null);
-        editTextName = findViewById(R.id.task_name);
-        editTextMoney = findViewById(R.id.task_money);
-        editTextDetail = findViewById(R.id.task_detail);
 
+        if (item == null) {
+            item = new IncomeItem("", "", 0, 0, "", 0);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.setSelectedItemId(R.id.Add);
+        }
         spinnerState.setSelection(item.getState());
         spinnerType.setSelection(item.getType());
         editTextName.setText(item.getName());
@@ -114,16 +134,18 @@ public class DetailActivity extends Activity { //AppCompatActivity {
         editTextDetail.setText(item.getDetail());
         chipGroup.getChildAt(item.getCategory()).setSelected(true);
 
+        IncomeItem finalItem = item;
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId != item.getCategory()) {
-                chipGroup.getChildAt(item.getCategory()).setSelected(false);
+            if (checkedId != finalItem.getCategory()) {
+                chipGroup.getChildAt(finalItem.getCategory()).setSelected(false);
             }
         });
 
 
         LinearLayout buttonSave = findViewById(R.id.submit);
+        IncomeItem finalItem1 = item;
         buttonSave.setOnClickListener(v -> {
-            int category = item.getCategory();
+            int category = finalItem1.getCategory();
             String name = editTextName.getText().toString().trim();
             String money = editTextMoney.getText().toString();
             String detail = editTextDetail.getText().toString();
@@ -146,14 +168,8 @@ public class DetailActivity extends Activity { //AppCompatActivity {
                 return;
             }
 
-//            if (isExistItem(new IncomeItem(name, money, detail, type, state, item.getTime(), category))) {
-//                CustomDialog dialog = new CustomDialog(this, (dialog1, which) -> {
-//                    if (which != DialogInterface.BUTTON_POSITIVE) {
-//                        finish();
-//                    }
-//                });
-//            }
-            if (item.getName() == null) {
+
+            if (finalItem1.getName() == null) {
                 String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy")));
                 IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
                 dataSource.addIncome(newItem);
@@ -164,9 +180,9 @@ public class DetailActivity extends Activity { //AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                String time = item.getTime();
+                String time = finalItem1.getTime();
                 IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
-                dataSource.updateIncome(item, newItem);
+                dataSource.updateIncome(finalItem1, newItem);
                 Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -178,11 +194,20 @@ public class DetailActivity extends Activity { //AppCompatActivity {
         });
 
         ImageView buttonCancel = findViewById(R.id.button_back);
-        buttonCancel.setOnClickListener(v -> finish());
+        buttonCancel.setOnClickListener( v -> {
+//            Intent intent = new Intent(this, HomeActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
+        finish();
+        }
+        );
 
         ImageView buttonRemove = findViewById(R.id.button_remove);
+        IncomeItem finalItem2 = item;
         buttonRemove.setOnClickListener(v -> {
-            dataSource.deleteIncome(item.getId());
+            dataSource.deleteIncome(finalItem2.getId());
             Toast.makeText(this, "Item removed", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
