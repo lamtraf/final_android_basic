@@ -169,7 +169,7 @@ public class DetailActivity extends Activity { //AppCompatActivity {
             }
 
 
-            if (finalItem1.getName() == null) {
+            if (finalItem1.getName() == "") {
                 String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy")));
                 IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
                 dataSource.addIncome(newItem);
