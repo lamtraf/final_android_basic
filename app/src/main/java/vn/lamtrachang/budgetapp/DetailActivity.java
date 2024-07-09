@@ -42,7 +42,9 @@ public class DetailActivity extends Activity { //AppCompatActivity {
     private SQLiteHelper dataSource = new SQLiteHelper(this);
     private ChipGroup chipGroup;
 
-
+    @Override
+    public void onBackPressed() {
+    }
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -112,10 +114,14 @@ public class DetailActivity extends Activity { //AppCompatActivity {
             if (item.getItemId() == R.id.Add) {
                 return true;
             } else if (item.getItemId() == R.id.Chart) {
+                bottomNavigationView.setSelectedItemId(R.id.Add);
                 startActivity(new Intent(this, LineChartActivity.class));
+                finish();
                 return true;
             } else if (item.getItemId() == R.id.Home) {
+                bottomNavigationView.setSelectedItemId(R.id.Add);
                 startActivity(new Intent(this, HomeActivity.class));
+                finish();
                 return true;
             }
             return false;

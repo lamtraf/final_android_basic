@@ -35,6 +35,9 @@ public class LineChartActivity extends AppCompatActivity {
     private List<String> months;
 
     @Override
+    public void onBackPressed() {
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -50,10 +53,14 @@ public class LineChartActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.Chart) {
                 return true;
             } else if (item.getItemId() == R.id.Home) {
+                bottomNavigationView.setSelectedItemId(R.id.Chart);
                 startActivity(new Intent(this, HomeActivity.class));
+                finish();
                 return true;
             } else if (item.getItemId() == R.id.Add) {
+                bottomNavigationView.setSelectedItemId(R.id.Chart);
                 startActivity(new Intent(this, DetailActivity.class));
+                finish();
                 return true;
             }
             return false;

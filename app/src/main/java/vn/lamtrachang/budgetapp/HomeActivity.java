@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,8 +51,14 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView imgEye;
 
 
+    // viết lại hàm onBackPressed để khi ấn nút back sẽ hiện thông báo mà không thoát ứng dụng
+    @Override
+    public void onBackPressed() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.home);
@@ -59,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
 
         mTextDate = findViewById(R.id.date);
@@ -70,10 +79,14 @@ public class HomeActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.Home) {
                 return true;
             } else if (item.getItemId() == R.id.Chart) {
+
                 startActivity(new Intent(this, LineChartActivity.class));
+                bottomNavigationView.setSelectedItemId(R.id.Home);
                 return true;
             } else if (item.getItemId() == R.id.Add) {
+
                 startActivity(new Intent(this, DetailActivity.class));
+                bottomNavigationView.setSelectedItemId(R.id.Home);
                 return true;
             }
             return false;
@@ -140,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             startActivity(intent);
         });
-
+        
     }
 
     //thêm dữ liệu mẫu từ tháng 5/2024
@@ -178,4 +191,5 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
 }
