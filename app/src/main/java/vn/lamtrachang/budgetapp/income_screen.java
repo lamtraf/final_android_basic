@@ -132,11 +132,11 @@ public class income_screen extends AppCompatActivity {
                     }
 
                     if (id == R.id.menuItem_bank) {
-                         genListItems(getAllItemByType(1, getAllItemByType(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                         genListItems(getAllItemByType(1, getAllItemByCategory(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
                         filterType = 1;
                         //Do something
                     } else if (id == R.id.menuItem_cash) {
-                         genListItems(getAllItemByType(0, getAllItemByType(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
+                         genListItems(getAllItemByType(0, getAllItemByCategory(filterCategory, getAllItemByName(edit_text_search.getText().toString().trim(),mItems))));
                         filterType = 0;
                         //Do something
                     } else if (id == R.id.menuItem_non)
@@ -181,7 +181,7 @@ public class income_screen extends AppCompatActivity {
     public ArrayList<IncomeItem> getAllItemByName(String name, ArrayList<IncomeItem> mItems) {
         ArrayList<IncomeItem> items = new ArrayList<>();
         for (IncomeItem item : mItems) {
-            if (item.getName().contains(name)) {
+            if (item.getName().toLowerCase().contains(name.toLowerCase())) {
                 items.add(item);
             }
         }

@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 //             return insets;
 //         });
 
-        Intent intent =new Intent(this, HomeActivity.class);
-        startActivity(intent);
+       Intent intent =new Intent(this, HomeActivity.class);
+       startActivity(intent);
 
-//        startActivity(new Intent(this, LoginScreen.class));
+         startActivity(new Intent(this, LineChartActivity.class));
 
     }
 }

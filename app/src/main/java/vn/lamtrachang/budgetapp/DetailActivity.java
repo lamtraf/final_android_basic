@@ -3,6 +3,7 @@ package vn.lamtrachang.budgetapp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,31 +16,29 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import vn.lamtrachang.budgetapp.placeholder.IncomeItem;
 import vn.lamtrachang.budgetapp.placeholder.SQLiteHelper;
 
-public class DetailActivity extends Activity{ //AppCompatActivity {
+public class DetailActivity extends Activity { //AppCompatActivity {
     private Spinner spinnerState;
     private Spinner spinnerType;
     private EditText editTextName;
     private EditText editTextMoney;
     private EditText editTextDetail;
     private Context mContext;
-    private SQLiteHelper dataSource= new SQLiteHelper(this);
+    private SQLiteHelper dataSource = new SQLiteHelper(this);
     private ChipGroup chipGroup;
 
 
@@ -101,7 +100,6 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
             }
         });
 
-        
 
         Bundle bundle = getIntent().getExtras();
         IncomeItem item = (IncomeItem) (bundle != null ? bundle.get("item") : null);
@@ -123,53 +121,54 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
         });
 
 
-
         LinearLayout buttonSave = findViewById(R.id.submit);
         buttonSave.setOnClickListener(v -> {
-            int category = 0;
+            int category = item.getCategory();
             String name = editTextName.getText().toString().trim();
             String money = editTextMoney.getText().toString();
             String detail = editTextDetail.getText().toString();
             int state = spinnerState.getSelectedItemPosition();
             int type = spinnerType.getSelectedItemPosition();
-            for (int i=0; i<chipGroup.getChildCount();i++){
-                Chip chip = (Chip)chipGroup.getChildAt(i);
-                if (chip.isChecked()){
+            for (int i = 0; i < chipGroup.getChildCount(); i++) {
+                Chip chip = (Chip) chipGroup.getChildAt(i);
+                if (chip.isChecked()) {
                     category = i;
                 }
             }
-            if (name.isEmpty()|| name.isBlank())
-            {
+            if (name.isEmpty() || name.isBlank()) {
                 editTextName.setError("Task name is required");
                 editTextName.requestFocus();
                 return;
             }
-            if (money.isEmpty())
-            {
+            if (money.isEmpty()) {
                 editTextMoney.setError("Task money is required");
                 editTextName.requestFocus();
                 return;
             }
 
-            if(item.getName()== null)
-            {
-                String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M")));
+//            if (isExistItem(new IncomeItem(name, money, detail, type, state, item.getTime(), category))) {
+//                CustomDialog dialog = new CustomDialog(this, (dialog1, which) -> {
+//                    if (which != DialogInterface.BUTTON_POSITIVE) {
+//                        finish();
+//                    }
+//                });
+//            }
+            if (item.getName() == null) {
+                String time = String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm - dd.M yyyy")));
                 IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
                 dataSource.addIncome(newItem);
-            Toast.makeText(this, "Item added", Toast.LENGTH_LONG).show();
-            Intent intent =new Intent(this, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-            }
-            else
-            {
+                Toast.makeText(this, "Item added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            } else {
                 String time = item.getTime();
                 IncomeItem newItem = new IncomeItem(name, money, detail, type, state, time, category);
-                dataSource.updateIncome(item,newItem);
+                dataSource.updateIncome(item, newItem);
                 Toast.makeText(this, "Item updated", Toast.LENGTH_LONG).show();
-                Intent intent =new Intent(this, HomeActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -185,13 +184,12 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
         buttonRemove.setOnClickListener(v -> {
             dataSource.deleteIncome(item.getId());
             Toast.makeText(this, "Item removed", Toast.LENGTH_LONG).show();
-            Intent intent =new Intent(this, HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
         });
-
     }
 
 
@@ -200,4 +198,14 @@ public class DetailActivity extends Activity{ //AppCompatActivity {
         String item = (String) adapter.getItem(position);
     }
 
+//    public boolean isExistItem(IncomeItem item) {
+//        ArrayList<IncomeItem> list = dataSource.getAll();
+//        for (IncomeItem i : list) {
+//            if (i.getName().toUpperCase() == item.getName().toUpperCase() && i.getMoney() == item.getMoney() && i.getState() == item.getState() && i.getCategory() == item.getCategory()) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }
+

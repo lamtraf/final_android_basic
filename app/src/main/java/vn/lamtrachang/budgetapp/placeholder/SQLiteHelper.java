@@ -196,5 +196,4 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return String.valueOf(income - expenses);
     }
 
-
 }

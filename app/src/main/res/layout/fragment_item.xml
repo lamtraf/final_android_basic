@@ -45,18 +45,17 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:background="@drawable/sff1b1b1esw2cr24bff74747a"
                 android:orientation="vertical">
                 <ImageView
                     android:id="@+id/state"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/expenses"
                     android:scaleType="fitXY"
@@ -74,6 +73,7 @@
                 android:id="@+id/name"
                 android:textColor="#F9F9FC"
                 android:textSize="14sp"
+                android:singleLine="true"
                 android:layout_marginBottom="6dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -164,6 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:singleLine="true"
                 android:layout_marginBottom="10dp"
                 android:text="450,550"
                 android:textColor="#F9F9FC"
